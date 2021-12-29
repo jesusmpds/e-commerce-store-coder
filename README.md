@@ -4,11 +4,11 @@ Este es un servidor web creado utilizando NodeJS.
 
 ## Tecnologías usadas
 
--NodeJS
--MongoDB
--Mongoose
--Express
--Json Web Tokens
+- NodeJS
+- MongoDB
+- Mongoose
+- Express
+- Json Web Tokens
 
 ## Usage
 
