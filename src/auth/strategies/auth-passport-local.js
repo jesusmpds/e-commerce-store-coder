@@ -1,11 +1,11 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const { validPassword, createPassword } = require("../utils/passwordUtil");
+const { validPassword, createPassword } = require("../../utils/passwordUtil");
 const {
   etherealNewUserSendMail,
-} = require("../controller/modules/emailController");
+} = require("../../controllers/modules/emailController");
 
-module.exports = (userModel) => {
+module.exports = (usersDao) => {
   const customFields = {
     usernameField: "email",
     passReqToCallback: true,
@@ -13,7 +13,7 @@ module.exports = (userModel) => {
 
   const loginCallback = async (req, email, password, done) => {
     try {
-      const user = await userModel.findOne({ email: email }).lean();
+      const user = await usersDao.findUserByEmail(email);
 
       if (!user) {
         return done(null, false);
@@ -34,7 +34,7 @@ module.exports = (userModel) => {
 
   const signUpCallback = async (req, email, password, done) => {
     try {
-      const user = await userModel.find({ email: email }).lean();
+      const user = await usersDao.findUserByEmail(email);
       console.log(user);
       if (user.length) {
         return done(
@@ -43,20 +43,17 @@ module.exports = (userModel) => {
           console.log("mensaje:", "Hay un usuario registrado con su mail")
         );
       } else {
-        const { firstName, lastName, email, age, phone, address, password } =
-          req.body;
+        const { firstName, lastName, email, phone, address } = req.body;
 
         const newUser = {
           email: email,
           first_name: firstName,
           last_name: lastName,
-          age: age,
           phone: phone,
           address: address,
-          avatarUrl: `/uploads/${req.file.filename}`,
           password: await createPassword(password),
         };
-        const newCreatedUser = await userModel.create(newUser);
+        const newCreatedUser = await usersDao.addUser(newUser);
         etherealNewUserSendMail(newUser);
         return done(null, newCreatedUser);
       }

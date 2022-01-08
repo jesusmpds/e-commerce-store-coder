@@ -1,0 +1,115 @@
+<section>
+  <div class="container">
+    <div class="card glass">
+      <div class="card-body">
+        <div class="row">
+          <h1>Registrate en la taberna</h1>
+          <form id="signupForm" action="/signup" method="post">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <label for="userNameLogIn" class="form-label mt-4">
+                  Añade tu email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  aria-describedby="Username"
+                  name="email"
+                  autocomplete="username"
+                  placeholder="email@example.com"
+                  required
+                />
+
+                <label for="nameLogIn" class="form-label mt-4">
+                  Añade tu nombre
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  aria-describedby="Name"
+                  name="firstName"
+                  placeholder="Jesus"
+                  required
+                />
+
+                <label for="lastName" class="form-label mt-4">Añade tu apellido</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  class="form-control"
+                  placeholder="Perez"
+                  required
+                />
+              </div>
+              <div class="col-12 col-md-6" id="second-col-signup">
+                <label for="phone" class="form-label mt-4">Añade tu número de
+                  teléfono</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                  placeholder="+54 9 11 27541612"
+                  required
+                />
+                <label for="userAddress" class="form-label mt-4">Añade tu
+                  direccion</label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  class="form-control"
+                  placeholder="Jeronimo Salguero 1175, Buenos Aires"
+                  required
+                />
+
+                <label for="passwordSignUp" class="form-label mt-4 d-block">
+                  Añada su contraseña
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="passwordSignUp"
+                  aria-describedby="Password"
+                  name="password"
+                  autocomplete="new-password"
+                  required
+                />
+                <label
+                  for="repeatPasswordSignUp"
+                  class="form-label mt-4 d-block"
+                >
+                  Repita su contraseña
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="repeatPasswordSignUp"
+                  aria-describedby="Password"
+                  name="passwordRepeat"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="submitSignupForm"
+              class="btn btn-dark mt-4"
+            >
+              Registrarse
+            </button>
+            <div class="mt-4">
+              <a href="/login" class="text-decoration-none mt-4">
+                Iniciar sesion
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

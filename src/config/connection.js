@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { MONGO_URI } = require(".");
+const { MONGO_URI } = require("./globals");
 
 exports.getConnection = async () => {
   try {

@@ -1,0 +1,43 @@
+<div class="flex-shrink-0 bg-white">
+    <span class="fs-5 fw-semibold">Filtrar por</span>
+    <ul id="filters" class="list-unstyled ps-0">
+      <li class="mb-1">
+        <button class="btn-toggle border-0 bg-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#name-collapse" aria-expanded="true">
+          ➜ Nombre
+        </button>
+        <div class="collapse show mt-2" id="name-collapse">
+          <input class="form-control me-2" type="search" placeholder="Busca por nombre" aria-label="Search">
+          <button id="filterByNameBtn" class="small btn btn-outline-success mt-2" type="button">Buscar</button>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn-toggle border-0 bg-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#code-collapse" aria-expanded="false">
+          ➜ Codigo
+        </button>
+        <div class="collapse mt-2" id="code-collapse" style="">
+          <input class="form-control me-2" type="search" placeholder="Busca por código" aria-label="Search">
+          <button id="filterByCodeBtn" class=" small btn btn-outline-success mt-2" type="button">Buscar</button>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn-toggle border-0 bg-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
+          ➜ Precio
+        </button>
+        <div class="collapse mt-2" id="price-collapse">
+          <input class="form-control me-2" type="search" placeholder="Mínimo" aria-label="Search">
+          <input class="form-control me-2 mt-2" type="search" placeholder="Máximo" aria-label="Search">
+          <button id="filterByPriceBtn" class="small btn btn-outline-success mt-2" type="button">Buscar</button>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn-toggle border-0 bg-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#stock-collapse" aria-expanded="false">
+          ➜ Stock
+        </button>
+        <div class="collapse mt-2" id="stock-collapse">
+          <input class="form-control me-2" type="search" placeholder="Mínimo" aria-label="Search">
+          <input class="form-control me-2 mt-2" type="search" placeholder="Máximo" aria-label="Search">
+          <button id="filterByStockBtn" class="small btn btn-outline-success mt-2" type="button">Buscar</button>
+        </div>
+      </li>
+    </ul>
+  </div>

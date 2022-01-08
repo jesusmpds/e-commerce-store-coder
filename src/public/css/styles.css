@@ -1,0 +1,36 @@
+body {
+  color: #000000;
+  height: 100vh;
+}
+
+section {
+  background: no-repeat center url("/static/images/tavern-outside.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+section.insideTavern {
+  background: no-repeat center url("/static/images/tavern-inside.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+/* ------------ Log In & Sign Up -----------*/
+.glass {
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: rgb(249 250 251 / 50%);
+  backdrop-filter: blur(5px);
+}
+
+.passwordMatches {
+  border-color: #86fea0;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(17 253 13 / 25%);
+}
+
+.passwordNotEqual {
+  border-color: #fe8686;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(253 13 13 / 17%);
+}

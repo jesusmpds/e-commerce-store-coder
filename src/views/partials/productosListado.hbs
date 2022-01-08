@@ -1,0 +1,48 @@
+<div id="productList" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+  {{#each listaDeProductos}}
+    <div class="col">
+      <div class="card h-100">
+        <img
+          src="{{this.imageURL}}"
+          class="card-img-top"
+          alt="{{this.description}}"
+        />
+        <div class="card-body">
+          <p class="mb-0">
+            Codigo
+            <span class="badge bg-secondary">{{this.code}} </span>
+          </p>
+          <h5 class="card-title mt-2">{{this.name}}</h5>
+          <p class="card-text">{{this.description}}</p>
+          <div class="row justify-content-between">
+            <div class="col">
+              <p class="mb-0">
+                Precio
+              </p>
+              <span class="badge bg-info">${{this.price}} </span>
+            </div>
+            <div class="col">
+              <p class="mb-0">
+                Stock
+              </p>
+              <span class="badge bg-danger">
+                {{this.stock}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-primary" productId="{{this._id}}">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  {{else}}
+
+    <div class="mt-4 container text-center">
+      <h2>No se encontraron productos</h2>
+    </div>
+
+  {{/each}}
+</div>

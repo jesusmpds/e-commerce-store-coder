@@ -1,7 +1,7 @@
-const server = require("./server");
+const server = require("./serverConfig");
 const { PORT } = require("../config/globals");
 const { getConnection } = require("../config/connection");
-const logger = require("../services/modules/loggerService");
+const logger = require("../utils/logger");
 
 getConnection()
   .then((message) => {

@@ -1,0 +1,43 @@
+<section>
+  <div class="container">
+    <div class="card glass">
+      <div class="card-body">
+        <div class="row">
+          <h1>Iniciar sesión</h1>
+          <hr />
+          <form>
+            <label for="userNameLogIn" class="form-label">
+              Ingrese su nombre de usuario o email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="userNameLogIn"
+              aria-describedby="Username"
+              name="username"
+              autocomplete="username"
+            />
+            <label for="passwordlogin" class="form-label">
+              Ingrese su contraseña
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="passwordlogin"
+              aria-describedby="Password"
+              name="password"
+              autocomplete="current-password"
+            />
+            <button class="btn btn-dark mt-4" id="logInButton">
+              Iniciar sesion
+            </button>
+            <div class="mt-4">
+              <a href="/signup" class="text-decoration-none mt-4">
+                Registrarse
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

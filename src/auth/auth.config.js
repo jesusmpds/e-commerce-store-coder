@@ -1,21 +1,23 @@
-const passport = require("passport");
-const { usersModel } = require("../dal/models/index");
+const PersistenceFactory = require("../dal/indexFactory");
+const { MEM_TYPE } = require("../config/globals");
+
+const { usersDao } = PersistenceFactory.get(MEM_TYPE);
 
 module.exports = (passport) => {
+  // Passport Strategies
+  require("./strategies/auth-passport-local")(usersDao);
+
+  // Serialization
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
 
   passport.deserializeUser((userId, done) => {
-    usersModel
-      .findById(userId)
+    usersDao
+      .findUserByID(userId)
       .then((user) => {
         done(null, user);
       })
       .catch((err) => done(err));
   });
-
-  // Passport Strategies
-  require("./auth-passport-facebook")(usersModel);
-  require("./auth-passport-local")(usersModel);
 };
