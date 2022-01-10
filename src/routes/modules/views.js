@@ -1,4 +1,6 @@
+const res = require("express/lib/response");
 const isAuthenticated = require("../../middleware/isAuthenticated");
+const { chatService } = require("../../services");
 const logger = require("../../utils/logger");
 const router = require("express").Router();
 
@@ -30,6 +32,13 @@ module.exports = (viewController) => {
 
   // ---------------- Chat Views--------------------------------/
 
+  router.get("/chat", isAuthenticated, (req, res) =>
+    viewController.getAllMessages(req, res)
+  );
+
+  router.get("/chat/:email", isAuthenticated, (req, res) =>
+    viewController.getAllMessagesByEmail(req, res)
+  );
   // --------------- Other views------------------------------/
 
   router.get("/entorno", isAuthenticated, (req, res) => {
@@ -54,6 +63,11 @@ module.exports = (viewController) => {
   router.get("/agregar-productos", isAuthenticated, (req, res) => {
     const userInfo = req.user.toJSON();
     res.render("pages/adminPanel", { userInfo });
+  });
+
+  router.get("/perfil", isAuthenticated, (req, res) => {
+    const userInfo = req.user.toJSON();
+    res.render("pages/perfil", { userInfo });
   });
 
   return router;

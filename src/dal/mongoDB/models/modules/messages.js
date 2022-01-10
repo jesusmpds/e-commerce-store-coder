@@ -5,7 +5,9 @@ const messageSchema = new Schema(
     date: { type: Date, default: Date.now },
     author: {
       email: String,
-      type: String,
+      isAdmin: { type: Boolean, default: false },
+      firstName: String,
+      lastName: String,
     },
     body: String,
   },

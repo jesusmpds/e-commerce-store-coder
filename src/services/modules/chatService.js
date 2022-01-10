@@ -4,7 +4,7 @@ module.exports = class {
   }
   async getAllMessages() {
     try {
-      return this.chatDao.getAllMessages();
+      return await this.chatDao.getAllMessages();
     } catch (error) {
       console.log(error);
     }
@@ -14,6 +14,15 @@ module.exports = class {
     try {
       const newMessage = await this.chatDao.saveMessage(message);
       return newMessage;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getAllMessagesByEmail(email) {
+    try {
+      const messages = await this.chatDao.getAllMessagesByEmail(email);
+      return messages;
     } catch (error) {
       console.log(error);
     }

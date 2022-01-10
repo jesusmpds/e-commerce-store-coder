@@ -19,6 +19,15 @@ module.exports = class {
       console.log(error);
     }
   }
+
+  async getAllMessagesByEmail(email) {
+    try {
+      const messages = await this.model.find({ "author.email": email }).lean();
+      return messages;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   //   async editMessage(id, messageUpdated) {
   //     const messageToUpdate = await MessageModel.findByIdAndUpdate(
   //       id,

@@ -17,7 +17,7 @@ module.exports = {
   productsController: new productsController(productsService),
   cartController: new cartController(cartService, notificationService),
   chatController: new chatController(chatService),
-  viewController: new viewController(productsService, cartService),
+  viewController: new viewController(productsService, cartService, chatService),
   ordersController: ordersController(ordersService, notificationService),
   authController: authController(notificationService),
 };

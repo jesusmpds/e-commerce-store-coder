@@ -14,10 +14,11 @@ const chatRouter = require("./modules/chat");
 const authRouter = require("./modules/auth");
 const ordersRouter = require("./modules/orders");
 
-module.exports = {
+module.exports = (io) => ({
   ordersRouter: ordersRouter(ordersController),
   productsRouter: productsRouter(productsController),
   vistas: vistas(viewController),
   authRouter: authRouter(authController),
   carritoRouter: carritoRouter(cartController),
-};
+  chatRouter: chatRouter(io, chatController),
+});

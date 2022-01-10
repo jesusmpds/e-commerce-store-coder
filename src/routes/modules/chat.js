@@ -1,4 +1,6 @@
-module.exports = (io, chatController) => {
+const { chatController } = require("../../controllers/index");
+
+module.exports = (io) => {
   //Chat
   io.on("connection", async (socket) => {
     console.log("¡Nuevo cliente conectado!");

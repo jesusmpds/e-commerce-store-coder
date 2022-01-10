@@ -1,0 +1,68 @@
+<div class="rounded">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12">
+
+      <div class="card bg-secondary bg-gradient text-white">
+        <div class="card-body">
+          <div class="d-flex flex-row mt-2 justify-content-center">
+            <div class="">
+              <div class="d-flex flex-column mx-3">
+                <span id="firstName">{{userInfo.first_name}}</span>
+                <span id="lastName">{{userInfo.last_name}}</span>
+                <p id="emailChat">{{userInfo.email}}</p>
+              </div>
+              <div class="mx-3">
+                <a class="btn btn-dark btn-sm" href="/perfil">Ver Perfil</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card glass" id="chat4">
+        <div
+          class="card-body overflow-auto position-relative"
+          style="height: 600px"
+        >
+          <div
+            id="messagesContainer"
+            class="d-flex flex-column justify-content-start"
+          >
+            {{#each allMessages}}
+              <div>
+                <span class="badge bg-dark">{{this.author.firstName}}</span>
+                <div>
+                  <p
+                    class="small p-2 ms-3 mb-1 rounded-3"
+                    style="background-color: #f5f6f7;"
+                  >{{this.body}}</p>
+                  <p
+                    class="small me-3 mb-3 rounded-3 d-flex justify-content-end"
+                  >{{this.date}}</p>
+                </div>
+              </div>
+            {{/each}}
+
+          </div>
+
+        </div>
+        <div
+          class="card-footer text-muted d-flex justify-content-start align-items-center p-3"
+        >
+          <input
+            type="text"
+            class="form-control"
+            id="messageChat"
+            placeholder="Escribe tu mensaje"
+          />
+          <button
+            type="button"
+            id="buttonSendMessage"
+            class="ms-3 btn btn-primary"
+          >➽</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

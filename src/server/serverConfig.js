@@ -56,6 +56,5 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
-app.use(routesConfig(routers));
-
+app.use(routesConfig(routers(io)));
 module.exports = server;

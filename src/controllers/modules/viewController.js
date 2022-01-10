@@ -2,9 +2,10 @@ const logger = require("../../utils/logger");
 const { orderTotal } = require("../../utils/orderTotal");
 
 module.exports = class {
-  constructor(productsService, cartService) {
+  constructor(productsService, cartService, chatService) {
     this.productsService = productsService;
     this.cartService = cartService;
+    this.chatService = chatService;
   }
   // ------------------- Product Controllers -------------/
   async getAllProducts(req, res, next) {
@@ -76,6 +77,34 @@ module.exports = class {
         userInfo,
       });
       return;
+    } catch (error) {
+      logger.error(error);
+      next(error);
+    }
+  }
+
+  // --------------- Chat Controllers----------------/
+  async getAllMessages(req, res, next) {
+    try {
+      const userInfo = req.user.toJSON();
+      const allMessages = await this.chatService.getAllMessages();
+
+      res.render("pages/chatPage", { allMessages, userInfo });
+    } catch (error) {
+      logger.error(error);
+      next(error);
+    }
+  }
+
+  async getAllMessagesByEmail(req, res, next) {
+    try {
+      console.log(req.params.email);
+      const userInfo = req.user.toJSON();
+      const allMessages = await this.chatService.getAllMessagesByEmail(
+        req.params.email
+      );
+      console.log(allMessages);
+      res.render("pages/chatPage", { allMessages, userInfo });
     } catch (error) {
       logger.error(error);
       next(error);
