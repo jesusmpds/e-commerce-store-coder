@@ -4,13 +4,13 @@ body {
 }
 
 section {
-  background: no-repeat center url("/static/images/tavern-outside.jpg");
+  background: no-repeat center url("/images/tavern-outside.jpg");
   background-size: cover;
   height: 100%;
 }
 
 section.insideTavern {
-  background: no-repeat center url("/static/images/tavern-inside.jpg");
+  background: no-repeat center url("/images/tavern-inside.jpg");
   background-size: cover;
   height: 100%;
 }

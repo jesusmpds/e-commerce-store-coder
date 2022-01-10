@@ -14,7 +14,7 @@ module.exports = class {
 
   async findUserByEmail(email) {
     try {
-      const user = await this.model.find({ email: email }).lean();
+      const user = await this.model.findOne({ email: email }).lean();
       return user;
     } catch (error) {
       console.log(error);

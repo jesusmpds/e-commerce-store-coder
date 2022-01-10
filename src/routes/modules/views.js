@@ -3,80 +3,57 @@ const logger = require("../../utils/logger");
 const router = require("express").Router();
 
 // --------------------------Product Views---------------------------//
-module.exports = (productsController, cartController) => {
+module.exports = (viewController) => {
   router.get("/", isAuthenticated, (req, res) => {
     res.redirect("/productos");
     return;
   });
 
-  router.get("/productos", isAuthenticated, async (req, res) => {
-    try {
-      const userInfo = req.user.toJSON();
-      let listaDeProductos = await productsController.getAllProducts(req, res);
+  router.get("/productos", isAuthenticated, (req, res, next) =>
+    viewController.getAllProducts(req, res, next)
+  );
 
-      res.render("pages/productos", { listaDeProductos, userInfo });
-      return;
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  router.get("/productos/:id", isAuthenticated, (req, res, next) =>
+    viewController.getProduct(req, res, next)
+  );
 
   router.get(
     "/productos/categoria/:categoria",
     isAuthenticated,
-    async (req, res) => {
-      try {
-        const userInfo = req.user.toJSON();
-        let listaDeProductos = await productsController.getProductByCategory(
-          req
-        );
-        listaDeProductos._id = listaDeProductos._id.toString();
-        res.render("pages/productos", {
-          listaDeProductos: [listaDeProductos],
-          userInfo,
-        });
-        return;
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    (req, res, next) => viewController.getProductByCategory(req, res, next)
   );
+
   // -------------------------Cart View -------------------------------//
-  router.get("/carrito", isAuthenticated, async (req, res) => {
-    try {
-      const userInfo = req.user.toJSON();
-      let listaDeProductosEnCarro = await cartController.getCartByUserId(
-        req,
-        res
-      );
-      if (listaDeProductosEnCarro === null) {
-        res.render("pages/carrito", {
-          listaDeProductosEnCarro: false,
-          userInfo,
-        });
-        return;
-      }
-      res.render("pages/carrito", {
-        listaDeProductosEnCarro,
-        userInfo,
-      });
-      return;
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  router.get("/carrito", isAuthenticated, async (req, res, next) =>
+    viewController.getCartByUserId(req, res, next)
+  );
 
   // ---------------- Chat Views--------------------------------/
 
   // --------------- Other views------------------------------/
 
-  router.get("/perfil", isAuthenticated, (req, res) => {
+  router.get("/entorno", isAuthenticated, (req, res) => {
     const userInfo = req.user.toJSON();
-    res.render("pages/perfil", { userInfo });
+    const {
+      PORT,
+      NODE_ENV,
+      MONGO_URI,
+      USERNAME_GMAIL,
+      SESSION_EXP_TIME,
+    } = require("../../config/globals");
+    const envInfo = {
+      PORT,
+      NODE_ENV,
+      MONGO_URI,
+      USERNAME_GMAIL,
+      SESSION_EXP_TIME,
+    };
+    res.render("pages/entorno", { envInfo, userInfo });
   });
 
   router.get("/agregar-productos", isAuthenticated, (req, res) => {
-    res.render("pages/adminPanel");
+    const userInfo = req.user.toJSON();
+    res.render("pages/adminPanel", { userInfo });
   });
 
   return router;

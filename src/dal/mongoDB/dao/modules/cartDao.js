@@ -20,7 +20,7 @@ module.exports = class {
   async addCart(cart) {
     try {
       const newCart = await this.model.create(cart);
-      await newCart.populate(["products", "user"]);
+      await newCart.populate(["products"]);
       return newCart;
     } catch (error) {
       logger.error(error);
@@ -29,13 +29,16 @@ module.exports = class {
 
   async updateCart(id, newProduct) {
     try {
-      const cartUpdated = await this.model.updateOne(
-        { user: id },
-        { $push: { products: newProduct } },
-        {
-          new: true,
-        }
-      );
+      const cartUpdated = await this.model
+        .findOneAndUpdate(
+          { user: id },
+          { $push: { products: newProduct } },
+          {
+            new: true,
+          }
+        )
+        .populate(["products"]);
+
       return cartUpdated;
     } catch (error) {
       logger.error(error);

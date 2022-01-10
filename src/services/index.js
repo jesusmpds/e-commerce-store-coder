@@ -1,12 +1,18 @@
 const cartService = require("./modules/cartService");
 const chatService = require("./modules/chatService");
 const productsService = require("./modules/productsService");
+const notificationService = require("./modules/notificationService");
+const ordersService = require("./modules/ordersService");
 const PersistenceFactory = require("../dal/indexFactory");
 const { MEM_TYPE } = require("../config/globals");
 
-const dao = PersistenceFactory.get(MEM_TYPE);
+const { productDao, cartDao, chatDao, ordersDao } =
+  PersistenceFactory.get(MEM_TYPE);
+
 module.exports = {
-  cartService: new cartService(dao.cartDao),
-  chatService: new chatService(dao.chatDao),
-  productsService: new productsService(dao.productDao),
+  cartService: new cartService(cartDao),
+  chatService: new chatService(chatDao),
+  productsService: new productsService(productDao),
+  notificationService: notificationService(),
+  ordersService: new ordersService(ordersDao),
 };

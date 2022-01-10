@@ -18,7 +18,6 @@ export const handlePasswordValidation = (urlPath) => {
           lastPassword.classList.add("passwordMatches");
 
           passwordIsEqual = true;
-          console.log(passwordIsEqual);
         } else {
           firstPassword.classList.remove("passwordMatches");
           lastPassword.classList.remove("passwordMatches");
@@ -26,13 +25,11 @@ export const handlePasswordValidation = (urlPath) => {
           firstPassword.classList.add("passwordNotEqual");
           lastPassword.classList.add("passwordNotEqual");
           passwordIsEqual = false;
-          console.log(passwordIsEqual);
         }
       }
     });
     const checkPasswordMatch = (evt) => {
       evt.preventDefault();
-      console.log(passwordIsEqual);
       passwordIsEqual === true
         ? signupForm.submit()
         : Swal.fire(

@@ -7,9 +7,10 @@ module.exports = class {
 
   async addProduct(req, res, next) {
     try {
-      // const {} = req.body
+      req.body.imageURL = `/images/products/${req.file.filename}`;
+
       const newProduct = await this.productsService.addProduct(req.body);
-      res.json(newProduct);
+      return res.status(201).json(newProduct);
     } catch (error) {
       next(error);
     }
@@ -18,7 +19,7 @@ module.exports = class {
   async getAllProducts(req, res, next) {
     try {
       const allProducts = await this.productsService.getAllProducts();
-      return allProducts;
+      return res.json(allProducts);
     } catch (error) {
       logger.error(`Error: ${error}`);
       next(error);
@@ -28,19 +29,21 @@ module.exports = class {
   async getProduct(req, res, next) {
     try {
       const oneProduct = await this.productsService.getProduct(req.params.id);
-      res.status(200).json(oneProduct);
+      return res.json(oneProduct);
     } catch (error) {
+      logger.error(`Error: ${error}`);
       next(error);
     }
   }
 
   async getProductByCategory(req, res, next) {
     try {
-      const oneProduct = await this.productsService.getProductByCategory(
+      const products = await this.productsService.getProductByCategory(
         req.params.category
       );
-      return oneProduct;
+      return res.json(products);
     } catch (error) {
+      logger.error(`Error: ${error}`);
       next(error);
     }
   }

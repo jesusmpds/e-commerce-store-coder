@@ -4,7 +4,7 @@ module.exports = class {
   }
   async getProduct(id) {
     try {
-      const Product = await this.model.findById(id);
+      const Product = await this.model.findById(id).lean();
       return Product;
     } catch (error) {
       console.log(error);
@@ -13,7 +13,7 @@ module.exports = class {
 
   async getProductByCategory(category) {
     try {
-      const Product = await this.model.findOne({ category: category }).lean();
+      const Product = await this.model.find({ category: category }).lean();
       return Product;
     } catch (error) {
       console.log(error);
@@ -49,6 +49,10 @@ module.exports = class {
     }
   }
   async deleteProduct(id) {
-    await this.model.findByIdAndDelete(id);
+    try {
+      await this.model.findByIdAndDelete(id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 };

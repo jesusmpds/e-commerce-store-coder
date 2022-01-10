@@ -1,43 +1,43 @@
-const { etherealSendMail } = require("./emailController");
-const dayjs = require("dayjs");
+module.exports = authController = (notificationService) => ({
+  logIn(req, res, next) {
+    if (req.isAuthenticated()) {
+      console.log("Usuario logueado");
+      const loggedUsername = req.session.user;
+      console.log(loggedUsername);
 
-exports.logIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    console.log("Usuario logueado");
-    const loggedUsername = req.session.user;
-    console.log(loggedUsername);
+      return res.redirect("/productos");
+    } else {
+      console.log("Usuario no logueado");
+      res.render("pages/logIn");
+      return;
+    }
+  },
 
-    return res.redirect("/productos");
-  } else {
-    console.log("Usuario no logueado");
-    res.render("pages/logIn");
-    return;
-  }
-};
+  logOut(req, res, next) {
+    try {
+      console.log("Ingresó a Logout");
+      req.logout();
 
-exports.logOut = (req, res, next) => {
-  try {
-    console.log("Ingresó a Logout");
+      res.render("partials/logOut");
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
-    const dataForEmail = {
-      username: req.user.email,
-      date: dayjs().format("[(]DD/MM/YYYY hh[:]mm[:]ss[)]"),
-      message: `${req.user.first_name}, logged out`,
-    };
-    etherealSendMail(dataForEmail);
-    req.logout();
+  signUp(req, res, next) {
+    res.render("pages/signUp");
+  },
 
-    res.render("partials/logOut");
-  } catch (error) {
-    console.log(error);
-  }
-};
+  async newUserSignup(req, res) {
+    await notificationService.alertNewUser(req.user);
+    res.redirect("/productos");
+  },
 
-exports.signUp = (req, res, next) => {
-  res.render("pages/signUp");
-};
+  failureSignUp(req, res, next) {
+    res.render("partials/failureSignUp");
+  },
 
-exports.failureSignUp = (req, res, next) =>
-  res.render("partials/failureSignUp");
-
-exports.failureLogIn = (req, res, next) => res.render("partials/failureLogIn");
+  failureLogIn(req, res, next) {
+    res.render("partials/failureLogIn");
+  },
+});

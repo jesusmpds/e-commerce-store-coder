@@ -1,19 +1,23 @@
-const productsRouter = require("./modules/products");
-const vistas = require("./modules/views");
-const carritoRouter = require("./modules/cart");
-const chatRouter = require("./modules/chat");
-const authRouter = require("./modules/auth");
-
 const {
   cartController,
   productsController,
   chatController,
   authController,
+  viewController,
+  ordersController,
 } = require("../controllers/index");
 
-module.exports = () => ({
+const productsRouter = require("./modules/products");
+const vistas = require("./modules/views");
+const carritoRouter = require("./modules/cart");
+const chatRouter = require("./modules/chat");
+const authRouter = require("./modules/auth");
+const ordersRouter = require("./modules/orders");
+
+module.exports = {
+  ordersRouter: ordersRouter(ordersController),
   productsRouter: productsRouter(productsController),
-  vistas: vistas(productsController, cartController),
+  vistas: vistas(viewController),
   authRouter: authRouter(authController),
   carritoRouter: carritoRouter(cartController),
-});
+};

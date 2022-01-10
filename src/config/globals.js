@@ -7,4 +7,9 @@ module.exports = {
   JWT_SECRET: process.env.SECRET || "PasSwoRd123",
   MEM_TYPE: process.env.MEM_TYPE || "MEM",
   SECRET: process.env.SECRET,
+  USERNAME_GMAIL: process.env.USERNAME_GMAIL,
+  PASS_GMAIL: process.env.PASS_GMAIL,
+  NODEMAILER_EMAIL: process.env.NODEMAILER_EMAIL,
+  NODEMAILER_EMAIL_PASSW: process.env.NODEMAILER_EMAIL_PASSW,
+  SESSION_EXP_TIME: Number(process.env.SESSION_EXP_TIME) || 600000,
 };

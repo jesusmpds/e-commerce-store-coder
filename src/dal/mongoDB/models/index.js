@@ -3,4 +3,5 @@ module.exports = {
   messagesModel: require("./modules/messages"),
   productsModel: require("./modules/products"),
   usersModel: require("./modules/users"),
+  ordersModel: require("./modules/orders"),
 };

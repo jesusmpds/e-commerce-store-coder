@@ -1,4 +1,4 @@
-const handleLoginLogOut = (urlPath) => {
+export const handleLoginLogOut = (urlPath) => {
   if (urlPath === "/login") {
     const username = document.getElementById("userNameLogIn");
     const password = document.getElementById("passwordlogin");
@@ -19,7 +19,6 @@ const handleLoginLogOut = (urlPath) => {
           redirect: "follow",
           body: JSON.stringify(data),
         }).then((res) => {
-          console.log(res);
           if (!res.ok) {
             throw new Error("Network response was not OK");
           }

@@ -1,9 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { validPassword, createPassword } = require("../../utils/passwordUtil");
-const {
-  etherealNewUserSendMail,
-} = require("../../controllers/modules/emailController");
 
 module.exports = (usersDao) => {
   const customFields = {
@@ -14,7 +11,6 @@ module.exports = (usersDao) => {
   const loginCallback = async (req, email, password, done) => {
     try {
       const user = await usersDao.findUserByEmail(email);
-
       if (!user) {
         return done(null, false);
       }
@@ -35,8 +31,8 @@ module.exports = (usersDao) => {
   const signUpCallback = async (req, email, password, done) => {
     try {
       const user = await usersDao.findUserByEmail(email);
-      console.log(user);
-      if (user.length) {
+
+      if (user) {
         return done(
           null,
           false,
@@ -54,7 +50,7 @@ module.exports = (usersDao) => {
           password: await createPassword(password),
         };
         const newCreatedUser = await usersDao.addUser(newUser);
-        etherealNewUserSendMail(newUser);
+
         return done(null, newCreatedUser);
       }
     } catch (err) {

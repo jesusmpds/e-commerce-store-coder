@@ -1,5 +1,5 @@
-<section class="row pt-4">
-  <div class="card shadow">
+<div class="row pt-4">
+  <div class="card glass">
     <div id="cartContainer" class="card-body">
       <h1>Carrito</h1>
       <hr />
@@ -13,11 +13,18 @@
       </div>
       <hr />
       <div id="productList" class="row row-cols-1">
+        <div class="col mb-2">
+          <div class="card h-100 glass p-1">
+            <h2>Total a pagar: $<span id="totalOrder">{{total}}</span></h2>
+          </div>
+        </div>
+      </div>
+      <div id="productList" class="row row-cols-1">
         {{#each listaDeProductosEnCarro}}
-          <div class="col">
-            <div class="card h-100">
+          <div class="col mb-2">
+            <div class="card h-100 glass">
               <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <img
                     src="{{this.imageURL}}"
                     class="card-img-top"
@@ -27,8 +34,7 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <p class="mb-0">
-                      Codigo
-                      <span class="badge bg-secondary">{{this.code}} </span>
+                      <span class="badge bg-secondary">{{this.category}} </span>
                     </p>
                     <h5 class="card-title mt-2">{{this.name}}</h5>
                     <p class="card-text">{{this.description}}</p>
@@ -61,4 +67,4 @@
       </div>
     </div>
   </div>
-</section>
+</div>

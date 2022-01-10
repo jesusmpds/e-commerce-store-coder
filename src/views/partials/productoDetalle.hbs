@@ -1,0 +1,42 @@
+<div id="productList" class="row row-cols-1">
+        {{#if listaDeProductos}}
+          <div class="col">
+            <div class="card h-100 glass">
+              <div class="row g-0">
+                <div class="col-md-3">
+                  <img
+                    src="{{listaDeProductos.imageURL}}"
+                    class="card-img-top"
+                    alt="{{listaDeProductos.description}}"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="mb-0">
+                      <span class="badge bg-secondary">{{listaDeProductos.category}} </span>
+                    </p>
+                    <h5 class="card-title mt-2">{{listaDeProductos.name}}</h5>
+                    <p class="card-text">{{listaDeProductos.description}}</p>
+                    <div class="row justify-content-between">
+                      <div class="col">
+                        <p class="mb-0">
+                          Precio
+                        </p>
+                        <span class="badge bg-info">${{listaDeProductos.price}} </span>
+                      </div>
+                      <div class="col">
+                        <button class="btn btn-primary" productId="{{listaDeProductos._id}}">
+                            Agregar al carrito
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          <div class="container text-center glass">
+            <h2>No se encontró ese producto</h2>
+          </div>
+        {{/if}}

@@ -1,7 +1,7 @@
 const app = require("express")();
 const passport = require("passport");
 const session = require("express-session");
-const { MONGO_URI, SECRET } = require("../config/globals");
+const { MONGO_URI, SECRET, SESSION_EXP_TIME } = require("../config/globals");
 const path = require("path");
 
 //Router and Middlerwares
@@ -13,6 +13,20 @@ const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+
+//Handlebar Engine
+let exphbs = require("express-handlebars");
+app.engine(
+  "hbs",
+  exphbs({
+    extname: "hbs",
+    defaultLayout: "main.hbs",
+    layoutsDir: "./src/views/layouts/",
+    partialsDir: "./src/views/partials/",
+  })
+);
+app.set("view engine", "hbs");
+app.set("views", "./src/views");
 
 // Persistence with MongoDB for Sessions
 const mongoStore = require("connect-mongo");
@@ -31,24 +45,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 6000000,
+      maxAge: SESSION_EXP_TIME,
     },
   })
 );
-
-//Handlebar Engine
-let exphbs = require("express-handlebars");
-app.engine(
-  "hbs",
-  exphbs({
-    extname: "hbs",
-    defaultLayout: "main.hbs",
-    layoutsDir: "./src/views/layouts/",
-    partialsDir: "./src/views/partials/",
-  })
-);
-app.set("view engine", "hbs");
-app.set("views", "./src/views");
 
 // Passport
 require("../auth/auth.config")(passport);
@@ -56,6 +56,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
-app.use(routesConfig(routers()));
+app.use(routesConfig(routers));
 
 module.exports = server;

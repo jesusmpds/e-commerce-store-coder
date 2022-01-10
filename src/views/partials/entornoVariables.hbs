@@ -1,0 +1,51 @@
+<div class="row pt-4">
+  <div class="card glass">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0"> Puerto del servidor</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0">{{envInfo.PORT}}
+          </p>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Ambiente de desarrollo</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0">{{envInfo.NODE_ENV}}</p>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">URl de la base de datos</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0">{{envInfo.MONGO_URI}}</p>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Email para notificaciones del backend</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0">{{envInfo.USERNAME_GMAIL}}</p>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Tiempo de expiración de las sesiones</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0">{{envInfo.SESSION_EXP_TIME}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
