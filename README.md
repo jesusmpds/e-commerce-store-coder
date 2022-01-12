@@ -108,6 +108,7 @@ Dentro de esta capa podemos encontrar un index que posee una clase con un patró
 App deployada en:
 
 ```
+https://taberna-tienda.herokuapp.com/
 
 ```
 
