@@ -3,6 +3,7 @@ const socket = io();
 export const handleChat = (urlPath) => {
   //Chat
   if (/\/(chat).*/.test(urlPath)) {
+    const socket = io();
     let messages = document.getElementById("messagesContainer");
     let inputEmail = document.getElementById("emailChat");
     let inputFirstName = document.getElementById("firstName");
