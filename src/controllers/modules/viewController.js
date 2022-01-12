@@ -98,12 +98,10 @@ module.exports = class {
 
   async getAllMessagesByEmail(req, res, next) {
     try {
-      console.log(req.params.email);
       const userInfo = req.user.toJSON();
       const allMessages = await this.chatService.getAllMessagesByEmail(
         req.params.email
       );
-      console.log(allMessages);
       res.render("pages/chatPage", { allMessages, userInfo });
     } catch (error) {
       logger.error(error);

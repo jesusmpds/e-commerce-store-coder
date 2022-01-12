@@ -4,11 +4,9 @@
   "description": "Proyecto E-commerce para curso de desarrollo backend Coderhouse.",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/server/index.js",
+    "start": "pm2 start ./src/server/index.js -i max",
     "watch": "npx nodemon ./src/server/index.js",
-    "prod": "set NODE_ENV=production&& node ./src/server/index.js",
-    "debug": "node --inspect ./src/server/index.js",
-    "test": "jest --detectOpenHandles"
+    "debug": "node --inspect ./src/server/index.js"
   },
   "jest": {
     "testEnvironment": "node"
@@ -37,9 +35,7 @@
   },
   "devDependencies": {
     "dotenv": "10.0.0",
-    "jest": "27.3.1",
-    "nodemon": "2.0.12",
-    "supertest": "6.1.6"
+    "nodemon": "2.0.12"
   },
   "repository": {
     "type": "git",

@@ -25,31 +25,9 @@ export const handleChat = (urlPath) => {
         console.log(message);
         messageInput.value = "";
       } else {
-        alert("Añada un mesnaje");
+        alert("Añada un mensaje");
       }
     });
-
-    // // Receive message and add them to the chat
-    // socket.on("allMessages", (msgs) => {
-    //   msgs.forEach((msg) => {
-    //     let item = document.createElement("div");
-
-    //     item.innerHTML = `
-    //         <span class="badge bg-dark">${document.createTextNode(
-    //           msg.author.firstName
-    //         )}</span>
-    //       <div>
-    //         <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">${document.createTextNode(
-    //           msg.text
-    //         )}</p>
-    //         <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">${document.createTextNode(
-    //           msg.date.toLocaleString()
-    //         )}</p>
-    //       </div>`;
-
-    //     messages.appendChild(item);
-    //   });
-    // });
 
     socket.on("newMessage", (msg) => {
       let item = document.createElement("div");

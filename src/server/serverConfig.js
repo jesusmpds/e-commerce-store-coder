@@ -2,7 +2,11 @@ const app = require("express")();
 const passport = require("passport");
 const session = require("express-session");
 const { MONGO_URI, SECRET, SESSION_EXP_TIME } = require("../config/globals");
-const path = require("path");
+const {
+  errorLogger,
+  errorResponder,
+  invalidPathHandler,
+} = require("../middleware/errorHandling");
 
 //Router and Middlerwares
 const routers = require("../routes/index");
@@ -57,4 +61,10 @@ app.use(passport.session());
 
 //Routes
 app.use(routesConfig(routers(io)));
+
+// Error handlers
+app.use(errorLogger);
+app.use(errorResponder);
+app.use(invalidPathHandler);
+
 module.exports = server;

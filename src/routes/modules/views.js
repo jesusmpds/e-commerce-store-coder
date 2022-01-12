@@ -70,5 +70,9 @@ module.exports = (viewController) => {
     res.render("pages/perfil", { userInfo });
   });
 
+  router.get("/error", (req, res) => {
+    res.render("pages/error");
+  });
+
   return router;
 };
