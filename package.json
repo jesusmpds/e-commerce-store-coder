@@ -4,7 +4,7 @@
   "description": "Proyecto E-commerce para curso de desarrollo backend Coderhouse.",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start ./src/server/index.js -i max",
+    "start": "pm2-runtime start ./src/server/index.js -i max",
     "watch": "npx nodemon ./src/server/index.js",
     "debug": "node --inspect ./src/server/index.js"
   },
