@@ -1,4 +1,4 @@
-require("dotenv").config();
+if (process.env.NODE_ENV === "development") require("dotenv").config();
 
 module.exports = {
   PORT: process.env.PORT ? Number(process.env.PORT) : 8080,
